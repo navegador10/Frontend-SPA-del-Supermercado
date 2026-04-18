@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:3001/api'; // Ajustar según la URL del backend
+const API_BASE_URL = 'http://localhost:3000/api'; // Conexión con el backend
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -29,11 +29,11 @@ export const usersService = {
 
 // Servicios para Proveedores
 export const suppliersService = {
-  getAll: () => api.get('/suppliers'),
-  getById: (id) => api.get(`/suppliers/${id}`),
-  create: (data) => api.post('/suppliers', data),
-  update: (id, data) => api.put(`/suppliers/${id}`, data),
-  delete: (id) => api.delete(`/suppliers/${id}`),
+  getAll: () => api.get('/providers'),
+  getById: (id) => api.get(`/providers/${id}`),
+  create: (data) => api.post('/providers', data),
+  update: (id, data) => api.put(`/providers/${id}`, data),
+  delete: (id) => api.delete(`/providers/${id}`),
 };
 
 // Servicios para Ventas

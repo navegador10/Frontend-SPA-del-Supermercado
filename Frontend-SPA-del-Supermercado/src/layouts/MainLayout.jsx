@@ -63,7 +63,7 @@ const MainLayout = ({ children }) => {
       </main>
       <footer className="bg-light text-center py-3 mt-5">
         <p className="mb-0 text-muted">
-          © 2024 MarketSoft - Sistema de Gestión de Supermercado
+          © 2026 MarketSoft - Sistema de Gestión de Supermercado
         </p>
       </footer>
     </div>

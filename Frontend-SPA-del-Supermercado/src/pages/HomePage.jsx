@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+  const navigate = useNavigate();
   return (
     <div className="text-center py-5">
       <h1 className="display-4 text-primary mb-4">
@@ -11,7 +13,11 @@ const HomePage = () => {
       </p>
       <div className="row mt-5">
         <div className="col-md-3 mb-4">
-          <div className="card h-100 shadow-sm">
+          <div 
+            className="card h-100 shadow-sm" 
+            style={{ cursor: 'pointer' }}
+            onClick={() => navigate('/products')}
+          >
             <div className="card-body text-center">
               <h5 className="card-title text-primary">📦 Productos</h5>
               <p className="card-text">
@@ -21,7 +27,11 @@ const HomePage = () => {
           </div>
         </div>
         <div className="col-md-3 mb-4">
-          <div className="card h-100 shadow-sm">
+          <div 
+            className="card h-100 shadow-sm" 
+            style={{ cursor: 'pointer' }}
+            onClick={() => navigate('/users')}
+          >
             <div className="card-body text-center">
               <h5 className="card-title text-success">👥 Usuarios</h5>
               <p className="card-text">
@@ -31,7 +41,11 @@ const HomePage = () => {
           </div>
         </div>
         <div className="col-md-3 mb-4">
-          <div className="card h-100 shadow-sm">
+          <div 
+            className="card h-100 shadow-sm" 
+            style={{ cursor: 'pointer' }}
+            onClick={() => navigate('/suppliers')}
+          >
             <div className="card-body text-center">
               <h5 className="card-title text-warning">🏪 Proveedores</h5>
               <p className="card-text">
@@ -41,7 +55,11 @@ const HomePage = () => {
           </div>
         </div>
         <div className="col-md-3 mb-4">
-          <div className="card h-100 shadow-sm">
+          <div 
+            className="card h-100 shadow-sm" 
+            style={{ cursor: 'pointer' }}
+            onClick={() => navigate('/sales')}
+          >
             <div className="card-body text-center">
               <h5 className="card-title text-info">💰 Ventas</h5>
               <p className="card-text">
