@@ -92,7 +92,7 @@ La aplicación consume una API REST con los siguientes endpoints:
 
 4. **Acceder a la aplicación**
 
-   Abrir el navegador en `http://localhost:5173`
+   Abrir el navegador en <http://localhost:5173>
 
 ### Scripts Disponibles
 
@@ -132,7 +132,7 @@ La aplicación consume una API REST con los siguientes endpoints:
 
 ## Configuración del Backend
 
-La aplicación está configurada para conectarse a un backend en `http://localhost:3001/api`. Para cambiar la URL del backend, modificar la constante `API_BASE_URL` en el archivo `src/services/api.js`.
+La aplicación está configurada para conectarse a un backend en <http://localhost:3000/api>. Para cambiar la URL del backend, modificar la constante `API_BASE_URL` en el archivo `src/services/api.js`.
 
 ## Notas Importantes
 
@@ -141,3 +141,9 @@ La aplicación está configurada para conectarse a un backend en `http://localho
 - La aplicación es totalmente responsiva gracias a Bootstrap
 - Se incluyen validaciones básicas en los formularios
 - Las operaciones CRUD están implementadas con manejo de errores
+
+## Contribuciones de Sergio
+
+- Mejoras en la experiencia de usuario
+- Optimización de la interfaz responsive
+- Validaciones mejoradas en formularios
