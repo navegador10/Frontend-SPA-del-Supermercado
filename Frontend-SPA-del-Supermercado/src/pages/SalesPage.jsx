@@ -30,22 +30,32 @@ const SalesPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Validar email
+      // Validar campos requeridos
+      if (!formData.customer_name.trim()) {
+        alert('Por favor, ingrese el nombre del cliente');
+        return;
+      }
+
+      // Validar email (solo si se proporciona)
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (formData.customer_email && !emailRegex.test(formData.customer_email)) {
-        alert('Por favor, ingrese un email válido');
+      if (formData.customer_email && formData.customer_email.trim() !== '' && !emailRegex.test(formData.customer_email)) {
+        alert('Por favor, ingrese un email válido o deje el campo vacío');
         return;
       }
 
       // Validar monto
-      if (parseFloat(formData.total_amount) <= 0) {
-        alert('El monto total debe ser mayor a 0');
+      const totalAmount = parseFloat(formData.total_amount);
+      if (isNaN(totalAmount) || totalAmount <= 0) {
+        alert('Por favor, ingrese un monto total válido mayor a 0');
         return;
       }
 
       const saleData = {
-        ...formData,
-        total_amount: parseFloat(formData.total_amount)
+        customer_name: formData.customer_name.trim(),
+        customer_email: formData.customer_email.trim() || null,
+        total_amount: totalAmount,
+        payment_method: formData.payment_method,
+        status: formData.status
       };
       
       if (editingSale) {
