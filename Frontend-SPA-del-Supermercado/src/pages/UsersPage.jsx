@@ -30,20 +30,36 @@ const UsersPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Validar campos requeridos
+      if (!formData.name.trim() || !formData.email.trim()) {
+        alert('Por favor, complete todos los campos requeridos');
+        return;
+      }
+
       // Validar email
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email)) {
+      if (!emailRegex.test(formData.email.trim())) {
         alert('Por favor, ingrese un email válido');
         return;
       }
 
-      // Validar contraseña (mínimo 6 caracteres)
-      if (!editingUser && formData.password.length < 6) {
+      // Validar contraseña (mínimo 6 caracteres) solo para nuevos usuarios
+      if (!editingUser && (!formData.password || formData.password.length < 6)) {
         alert('La contraseña debe tener al menos 6 caracteres');
         return;
       }
 
-      const userData = { ...formData };
+      const userData = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim() || null,
+        role: formData.role
+      };
+
+      // Solo incluir contraseña para nuevos usuarios
+      if (!editingUser) {
+        userData.password = formData.password;
+      }
       
       if (editingUser) {
         await usersService.update(editingUser.id, userData);

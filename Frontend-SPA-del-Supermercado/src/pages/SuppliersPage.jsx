@@ -10,7 +10,8 @@ const SuppliersPage = () => {
     email: '',
     phone: '',
     address: '',
-    company: ''
+    company: '',
+    city: ''
   });
 
   useEffect(() => {
@@ -30,14 +31,27 @@ const SuppliersPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Validar email
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (formData.email && !emailRegex.test(formData.email)) {
-        alert('Por favor, ingrese un email válido');
+      // Validar campos requeridos
+      if (!formData.name.trim() || !formData.company.trim() || !formData.phone.trim() || !formData.address.trim() || !formData.city.trim()) {
+        alert('Por favor, complete todos los campos requeridos');
         return;
       }
 
-      const supplierData = { ...formData };
+      // Validar email (solo si se proporciona)
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (formData.email && formData.email.trim() !== '' && !emailRegex.test(formData.email)) {
+        alert('Por favor, ingrese un email válido o deje el campo vacío');
+        return;
+      }
+
+      const supplierData = {
+        name: formData.name.trim(),
+        company: formData.company.trim(),
+        phone: formData.phone.trim(),
+        address: formData.address.trim(),
+        city: formData.city.trim(),
+        email: formData.email.trim() || null
+      };
       
       if (editingSupplier) {
         await suppliersService.update(editingSupplier.id, supplierData);
@@ -46,7 +60,7 @@ const SuppliersPage = () => {
       }
       setShowModal(false);
       setEditingSupplier(null);
-      setFormData({ name: '', email: '', phone: '', address: '', company: '' });
+      setFormData({ name: '', email: '', phone: '', address: '', company: '', city: '' });
       loadSuppliers();
     } catch (error) {
       console.error('Error saving supplier:', error);
@@ -61,7 +75,8 @@ const SuppliersPage = () => {
       email: supplier.email,
       phone: supplier.phone,
       address: supplier.address,
-      company: supplier.company
+      company: supplier.company,
+      city: supplier.city || ''
     });
     setShowModal(true);
   };
@@ -213,6 +228,17 @@ const SuppliersPage = () => {
                       onChange={handleInputChange}
                       required
                     ></textarea>
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label">Ciudad</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      required
+                    />
                   </div>
                 </div>
                 <div className="modal-footer">

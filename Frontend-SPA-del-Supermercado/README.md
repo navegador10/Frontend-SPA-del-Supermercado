@@ -3,7 +3,7 @@
 ## Integrantes del Equipo
 
 - Adelson Aguirre Rodriguez
-- Sergio Alonso Arboleda S (sergio.07cr@gmail.com)
+- Sergio Alonso Arboleda S
 
 ## Descripción del Proyecto
 

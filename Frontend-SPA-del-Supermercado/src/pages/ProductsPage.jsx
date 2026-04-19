@@ -30,11 +30,32 @@ const ProductsPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Convertir campos numéricos
+      // Validar campos requeridos
+      if (!formData.name.trim() || !formData.description.trim() || !formData.category.trim()) {
+        alert('Por favor, complete todos los campos requeridos');
+        return;
+      }
+
+      // Validar y convertir campos numéricos
+      const price = parseFloat(formData.price);
+      const stock = parseInt(formData.stock);
+
+      if (isNaN(price) || price <= 0) {
+        alert('Por favor, ingrese un precio válido mayor a 0');
+        return;
+      }
+
+      if (isNaN(stock) || stock < 0) {
+        alert('Por favor, ingrese un stock válido (0 o mayor)');
+        return;
+      }
+
       const productData = {
-        ...formData,
-        price: parseFloat(formData.price),
-        stock: parseInt(formData.stock)
+        name: formData.name.trim(),
+        description: formData.description.trim(),
+        category: formData.category.trim(),
+        price: price,
+        stock: stock
       };
 
       if (editingProduct) {
